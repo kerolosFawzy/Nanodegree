@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ea5d32">
+
+        <ImageView
+            android:layout_width="132dp"
+            android:layout_height="175dp"
+            app:srcCompat="@mipmap/ic_launcher"
+            android:id="@+id/BookDetialView" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <TextView
+                android:text="bookTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/bookTitle"
+                android:textSize="14sp"
+                android:layout_margin="20dp" />
+
+            <TextView
+                android:text="publishedDate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/publishedDate"
+                android:textSize="14sp"
+                android:layout_margin="20dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:text="About Book "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/textView7"
+                    android:textSize="24sp"
+                    android:textColor="@color/colorAccent"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginStart="10dp" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp"
+                    android:layout_marginStart="5dp">
+
+                    <TextView
+                        android:text="Publisher :"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView8"
+                        android:layout_weight="1"
+                        android:textSize="18sp"
+                        android:textColor="@android:color/background_dark" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ThePublisher"
+                        android:layout_weight="1"
+                        android:text="Publisher Not Found "
+                        android:textColor="@android:color/holo_red_dark" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp">
+
+                    <TextView
+                        android:text="Author: "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView13"
+                        android:layout_weight="1"
+                        android:allowUndo="true"
+                        android:textSize="24sp"
+                        android:textColor="@android:color/background_dark" />
+
+                    <TextView
+                        android:text="Sorry Author Not found "
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Author"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorAccent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp">
+
+                    <TextView
+                        android:text="describtion: "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text12"
+                        android:textSize="24sp"
+                        android:textColor="@android:color/background_dark" />
+
+                    <TextView
+                        android:text="Sorry there isno descrivition found "
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Describition"
+                        android:textColor="@color/colorAccent" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="20dp">
+
+                    <TextView
+                        android:text="Number of Pages:"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView2"
+                        android:layout_weight="1"
+                        android:textSize="18sp"
+                        android:textStyle="normal|bold"
+                        android:textColor="@android:color/black" />
+
+                    <TextView
+                        android:text="TextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/Number"
+                        android:layout_weight="1"
+                        android:textColor="@color/colorAccent" />
+                </LinearLayout>
+
+                <Button
+                    android:text="View the book"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/ViewBook"
+                    android:background="@android:color/black"
+                    android:textSize="18sp"
+                    android:textColor="@android:color/background_light" />
+            </LinearLayout>
+        </ScrollView>
+    </LinearLayout>
+
+</LinearLayout>
