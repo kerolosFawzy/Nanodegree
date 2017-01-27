@@ -10,7 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 
 import com.massive.readbook.BaseAdapterBook;
 import com.massive.readbook.Item;
@@ -22,26 +24,31 @@ import com.massive.readbook.utiles.constants;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Minafaw on 27/01/2017.
  */
 
 public class BaseFragment extends Fragment implements IcallBack {
     ArrayList<Item> books;
-    public GridView  mGridView;
-
+    public GridView mGridView;
     BaseAdapterBook baseAdapterBook;
+    @BindView(R.id.MySearch)
+    EditText mysearch;
+    @BindView(R.id.SearchimageView)
+    ImageView iv_search;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        callNetWork(constants.BASEURL + "all");
-
+        callNetWork(constants.BASEURL , "all");
     }
 
-    private void callNetWork(String myurl) {
+    private void callNetWork(String myurl , String search) {
         if (NetworkUtils.isNetworkAvailable(getActivity())) {
-            new WebCall(this, getActivity()).execute(myurl+"all");
+            new WebCall(this, getActivity()).execute(myurl + search);
         } else {
             showErrormessage();
         }
@@ -49,12 +56,22 @@ public class BaseFragment extends Fragment implements IcallBack {
 
 
 
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.base_fragment, null);
+        ButterKnife.bind(this , view);
         mGridView = (GridView) view.findViewById(R.id.BooksGrid);
         bookMethod();
+
+        iv_search.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callNetWork(constants.BASEURL , mysearch.getText().toString());
+            }
+        });
+
 
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -93,13 +110,14 @@ public class BaseFragment extends Fragment implements IcallBack {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();
-                callNetWork(constants.BASEURL + "all");
+                callNetWork(constants.BASEURL , "all");
             }
         });
         AlertDialog dialog = builder.create();
         dialog.show();
 
     }
+
     @Override
     public void onPostExcuteCallBack(ArrayList<Item> ArrayList) {
         this.books = ArrayList;

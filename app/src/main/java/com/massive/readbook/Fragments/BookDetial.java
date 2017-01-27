@@ -85,18 +85,20 @@ public class BookDetial extends Fragment {
             Glide.with(getActivity()).load(MyInfo.volumeInfo.imageLinks.smallThumbnail)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(BookDetialView);
-            try{
+
                 ViewBook.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        try{
                         String bookLink = MyInfo.volumeInfo.previewLink;
                         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(bookLink));
                         startActivity(browserIntent);
+                        }catch (Exception e){
+                            e.printStackTrace();
+                        }
                     }
                 });
-            }catch (Exception e){
-                e.printStackTrace();
-            }
+
 
 
         } catch (Exception e) {
