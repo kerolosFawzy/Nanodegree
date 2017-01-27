@@ -1,6 +1,8 @@
 package com.massive.readbook;
 
-public class ImageLinks
+import java.io.Serializable;
+
+public class ImageLinks implements Serializable
 {
     public String smallThumbnail ;
     public String thumbnail ;

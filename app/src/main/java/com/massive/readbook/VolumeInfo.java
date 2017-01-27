@@ -1,8 +1,9 @@
 package com.massive.readbook;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class VolumeInfo
+public class VolumeInfo implements Serializable
 {
   public String title ;
   public String subtitle ;

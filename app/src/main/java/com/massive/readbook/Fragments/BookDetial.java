@@ -31,14 +31,14 @@ public class BookDetial extends Fragment {
     TextView ThePublisher;
     @BindView(R.id.Author)
     TextView Author;
-    @BindView(R.id.BookDetialView)
-    ImageView BookDetialView;
-    @BindView(R.id.ViewBook)
-    Button ViewBook;
     @BindView(R.id.Number)
     TextView Number;
     @BindView(R.id.Describition)
     TextView Describition;
+    @BindView(R.id.BookDetialView)
+    ImageView BookDetialView;
+    @BindView(R.id.ViewBook)
+    Button ViewBook;
 
     private Item MyInfo;
     String Error="Result not Found";
@@ -60,7 +60,12 @@ public class BookDetial extends Fragment {
             MyInfo = (Item) getArguments().getSerializable(constants.MY_KEY);
             Title.setText(MyInfo.volumeInfo.title);
             publishedDate.setText(MyInfo.volumeInfo.publishedDate);
-            Number.setText(MyInfo.volumeInfo.pageCount);
+            try {
+                Number.setText(String.valueOf(MyInfo.volumeInfo.pageCount));
+            }catch (Exception e){
+                Number.setText(Error);
+            }
+
             try {
                 ThePublisher.setText(MyInfo.volumeInfo.publisher);
             } catch (Exception e) {
@@ -80,13 +85,19 @@ public class BookDetial extends Fragment {
             Glide.with(getActivity()).load(MyInfo.volumeInfo.imageLinks.smallThumbnail)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(BookDetialView);
-            ViewBook.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(MyInfo.volumeInfo.previewLink.toString()));
-                    startActivity(browserIntent);
-                }
-            });
+            try{
+                ViewBook.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String bookLink = MyInfo.volumeInfo.previewLink;
+                        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(bookLink));
+                        startActivity(browserIntent);
+                    }
+                });
+            }catch (Exception e){
+                e.printStackTrace();
+            }
+
 
         } catch (Exception e) {
             e.printStackTrace();
